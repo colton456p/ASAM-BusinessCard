@@ -9,7 +9,7 @@ function downloadContact() {
   }
   
   function exchangeContact() {
-    alert("Exchange functionality requires backend or NFC handling. For now, this is a placeholder.");
+    alert("Feature comming soon!");
   }
   
   // Optional: Enforce mobile-only access
