@@ -3,6 +3,8 @@ const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const twilio = require('twilio');
+require('dotenv').config();
+
 
 const app = express();
 const PORT = 3000;
@@ -12,9 +14,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Twilio setup
-const accountSid = 'AC82228f3e76989fb1b4e7a6562ccaf608'; // Your Twilio Account SID
-const authToken = 'b17757c63bccdfb4a8fc0aa8a624596b';              // Replace with your Auth Token
-const messagingServiceSid = 'MGd5664469f2d4a72c095597d6f3d6a503'; // Messaging Service SID
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
 
 const client = twilio(accountSid, authToken);
 
