@@ -34,7 +34,7 @@ document.getElementById('exchangeForm').addEventListener('submit', async functio
   };
 
   try {
-    const response = await fetch('http://localhost:3000/api/exchange-contact', {
+    const response = await fetch('https://asam-businesscard.onrender.com/api/exchange-contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(contact)
