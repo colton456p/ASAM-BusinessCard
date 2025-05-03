@@ -10,6 +10,23 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 </head>
+<!-- Exchange Contact Modal -->
+<div id="exchangeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white p-6 rounded-xl w-11/12 max-w-md">
+    <h2 class="text-lg font-bold mb-4">Share Your Contact Info</h2>
+    <form id="exchangeForm" class="space-y-4">
+      <input type="text" id="firstName" placeholder="First Name" required class="w-full border p-2 rounded-md">
+      <input type="text" id="lastName" placeholder="Last Name" required class="w-full border p-2 rounded-md">
+      <input type="email" id="email" placeholder="Email" required class="w-full border p-2 rounded-md">
+      <input type="tel" id="phone" placeholder="Phone Number" required class="w-full border p-2 rounded-md">
+      <div class="flex space-x-4">
+        <button type="button" onclick="closeExchangeModal()" class="w-full bg-gray-200 px-4 py-3 rounded-3xl font-medium text-sm whitespace-nowrap">Cancel</button>
+        <button type="submit" class="w-full px-4 py-3 rounded-3xl font-medium text-sm whitespace-nowrap" style="background-color: #2C7A7B; color: white;">Share Info</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <body class="text-gray-800">
   <!-- Desktop View Message -->
   <div id="desktop-message" class="hidden md:flex h-screen items-center justify-center text-center px-6">
@@ -26,8 +43,7 @@
       <div class="flex space-x-4 -m-2">
         <div class="w-40 h-60 overflow-hidden rounded-2xl border-4 border-white">
           <img src="images/colton-profile.jpg" alt="Profile" class="w-full h-full object-cover">
-        </div>        
-        <!-- <img src="images/colton-profile.jpg" alt="Profile" class="w-50 h-60 rounded-2xl border-4 border-white"> -->
+        </div>
         <div>
           <h1 class="text-3xl font-bold">Colton</h1>
           <h1 class="text-3xl font-bold">Palfrey</h1>
@@ -40,7 +56,7 @@
         <button onclick="downloadContact()" class="w-full bg-gray-200 px-4 py-3 rounded-3xl font-medium text-sm whitespace-nowrap">
           Save Contact
         </button>
-        <button onclick="exchangeContact()" class="w-full px-4 py-3 rounded-3xl font-medium text-sm whitespace-nowrap" style="background-color: #2C7A7B; color: white;" class="px-4 py-3 rounded-3xl font-medium text-sm whitespace-nowrap">
+        <button onclick="exchangeContact()" class="w-full px-4 py-3 rounded-3xl font-medium text-sm whitespace-nowrap" style="background-color: #2C7A7B; color: white;">
           Exchange Contact
         </button>
       </div>
@@ -62,19 +78,19 @@
       <h2 class="font-bold text-lg">Contact Info</h2>
     
       <!-- Phone Number -->
-      <div class="flex justify-between items-center border-b border-gray-300 pb-2">
+      <div class="flex justify-between items-center border-b border-gray-300 pb-2" href="tel:+12508640030">
         <div class="flex items-center space-x-3">
           <i class="fas fa-phone-alt text-gray-500 w-6 h-6"></i>
-          <a href="tel:+12508640030" class="text-black">+1 250 864 0030</a>
+          <p class="text-black">+1 250 864 0030</p>
         </div>
         <i class="fas fa-chevron-right text-gray-500"></i>
       </div>
     
       <!-- Email Address -->
-      <div class="flex justify-between items-center border-b border-gray-300 pb-2">
+      <div class="flex justify-between items-center border-b border-gray-300 pb-2" href="mailto:colton.p@hotmail.com">
         <div class="flex items-center space-x-3">
           <i class="fas fa-envelope text-gray-500 w-6 h-6"></i>
-          <a href="mailto:colton.p@hotmail.com" class="text-black">colton.p@hotmail.com</a>
+          <p class="text-black">colton.p@hotmail.com</p>
         </div>
         <i class="fas fa-chevron-right text-gray-500"></i>
       </div>
@@ -83,7 +99,7 @@
       <div class="flex justify-between items-center border-b border-gray-300 pb-2">
         <div class="flex items-center space-x-3">
           <i class="fas fa-map-marker-alt text-gray-500 w-6 h-6"></i>
-          <span class="text-black">Kelowna BC/Sydney Australia</span>
+          <span class="text-black">Kelowna, BC, Canada/Sydney, NSW, Australia</span>
         </div>
       </div>
     </div>
