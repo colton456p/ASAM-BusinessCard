@@ -41,6 +41,7 @@ app.post('/api/exchange-contact', async (req, res) => {
   const smsBody = `Here is the contact information to ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`;
 
   let destinationNumber;
+  console.log('Received sender:', sender);
   switch (sender.toLowerCase()) {
     case 'colton':
       destinationNumber = '+12508640030';
@@ -61,7 +62,7 @@ app.post('/api/exchange-contact', async (req, res) => {
 
     res.status(200).json({ message: 'Contact sent via SMS successfully.' });
   } catch (err) {
-    console.error('SMS failed:', err);
+    console.error('SMS failed:', err.message, err.code, err);
     res.status(500).json({ error: 'Failed to send SMS.' });
   }
 });
