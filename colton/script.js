@@ -31,6 +31,7 @@ document.getElementById('exchangeForm').addEventListener('submit', async functio
     lastName: document.getElementById('lastName').value,
     email: document.getElementById('email').value,
     phone: document.getElementById('phone').value,
+    sender: "colton"
   };
 
   try {

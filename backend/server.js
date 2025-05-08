@@ -22,17 +22,16 @@ const client = twilio(accountSid, authToken);
 
 // Route
 app.post('/api/exchange-contact', async (req, res) => {
-  const { firstName, lastName, email, phone } = req.body;
+  const { firstName, lastName, email, phone, sender } = req.body;
 
-  if (!firstName || !lastName || !email || !phone) {
-    return res.status(400).json({ error: 'All fields are required.' });
+  if (!firstName || !lastName || !email || !phone || !sender) {
+    return res.status(400).json({ error: 'All fields including sender are required.' });
   }
 
   const vcfContent = `BEGIN:VCARD\nVERSION:3.0\nN:${lastName};${firstName}\nFN:${firstName} ${lastName}\nEMAIL:${email}\nTEL:${phone}\nEND:VCARD`;
   const filename = `${firstName}-${lastName}.vcf`;
   const filePath = `./contacts/${filename}`;
 
-  // Ensure directory exists
   if (!fs.existsSync('./contacts')) {
     fs.mkdirSync('./contacts');
   }
@@ -41,9 +40,21 @@ app.post('/api/exchange-contact', async (req, res) => {
 
   const smsBody = `Here is the contact information to ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`;
 
+  let destinationNumber;
+  switch (sender.toLowerCase()) {
+    case 'colton':
+      destinationNumber = '+12508640030';
+      break;
+    case 'hailey':
+      destinationNumber = '+12508013421';
+      break;
+    default:
+      return res.status(400).json({ error: 'Invalid sender.' });
+  }
+
   try {
     await client.messages.create({
-      to: '+12508640030',
+      to: destinationNumber,
       from: messagingServiceSid,
       body: smsBody
     });
@@ -54,6 +65,7 @@ app.post('/api/exchange-contact', async (req, res) => {
     res.status(500).json({ error: 'Failed to send SMS.' });
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
