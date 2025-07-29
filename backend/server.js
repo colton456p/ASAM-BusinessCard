@@ -44,10 +44,10 @@ app.post('/api/exchange-contact', async (req, res) => {
   console.log('Received sender:', sender);
   switch (sender.toLowerCase()) {
     case 'colton':
-      destinationNumber = '+12508640030';
+      destinationNumber = '+61468372453';
       break;
     case 'hailey':
-      destinationNumber = '+12508013421';
+      destinationNumber = '+61403886675';
       break;
     default:
       return res.status(400).json({ error: 'Invalid sender.' });
