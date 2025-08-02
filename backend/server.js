@@ -28,17 +28,7 @@ app.post('/api/exchange-contact', async (req, res) => {
     return res.status(400).json({ error: 'All fields including sender are required.' });
   }
 
-  const vcfContent = `BEGIN:VCARD\nVERSION:3.0\nN:${lastName};${firstName}\nFN:${firstName} ${lastName}\nEMAIL:${email}\nTEL:${phone}\nEND:VCARD`;
-  const filename = `${firstName}-${lastName}.vcf`;
-  const filePath = `./contacts/${filename}`;
-
-  if (!fs.existsSync('./contacts')) {
-    fs.mkdirSync('./contacts');
-  }
-
-  fs.writeFileSync(filePath, vcfContent);
-
-  const smsBody = `Here is the contact information to:\nName ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`;
+  const smsBody = `\n\nYour contact has been saved by ${firstName} ${lastName}.\n\nHere is their contact info:\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`;
 
   let destinationNumber;
   console.log('Received sender:', sender);
