@@ -38,7 +38,7 @@ app.post('/api/exchange-contact', async (req, res) => {
 
   fs.writeFileSync(filePath, vcfContent);
 
-  const smsBody = `Here is the contact information to ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`;
+  const smsBody = `Here is the contact information to:\nName ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}`;
 
   let destinationNumber;
   console.log('Received sender:', sender);
